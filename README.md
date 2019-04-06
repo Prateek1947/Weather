@@ -5,4 +5,4 @@
 
 >App gives current weather data of any location by its postal code
 
-(https://github.com/Prateek1947/Weather/blob/master/Weather.png)
+![Screenshot](https://github.com/Prateek1947/Weather/blob/master/Weather.png)
