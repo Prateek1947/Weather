@@ -13,6 +13,9 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.sachan.prateek.weather.Data.WeatherData;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -25,7 +28,9 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imageView;
     private static WeatherData weatherData;
     private EditText editText;
+    private SimpleDateFormat format;
     private Button button;
+    private Date date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +65,10 @@ public class MainActivity extends AppCompatActivity {
                     desc.setText(weatherData.getWeather().get(0).getDescription());
                     country.setText(weatherData.getSys().getCountry());
                     windSpeed.setText(String.valueOf(weatherData.getWind().getSpeed()));
+                    date=new Date((long)weatherData.getSys().getSunrise()*1000);
+                    sunrise.setText(format.format(date));
+                    date=new Date((long)weatherData.getSys().getSunset()*1000);
+                    sunset.setText(format.format(date));
                     Glide.with(MainActivity.this).load("http://openweathermap.org/img/w/" + response.body().getWeather().get(0).getIcon() + ".png").into(imageView);
                 } else {
                     Toast.makeText(MainActivity.this, "Wrong Postal/Zip code", Toast.LENGTH_SHORT).show();
@@ -76,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         imageView = findViewById(R.id.image);
         city = findViewById(R.id.text);
         lat=findViewById(R.id.lat);
+        format= new SimpleDateFormat("dd-MM-yyyy  HH:mm:ss");
         country=findViewById(R.id.country);
         lon=findViewById(R.id.lon);
         temp=findViewById(R.id.temp);
