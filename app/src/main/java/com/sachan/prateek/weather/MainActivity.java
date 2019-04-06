@@ -1,5 +1,6 @@
 package com.sachan.prateek.weather;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -81,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    @SuppressLint("SimpleDateFormat")
     private void instanstiate(){
         imageView = findViewById(R.id.image);
         city = findViewById(R.id.text);
